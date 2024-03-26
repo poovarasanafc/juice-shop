@@ -33,11 +33,11 @@ phases:
       # - unzip sonar-scanner-cli-4.6.2.2472-linux.zip
       # - mv sonar-scanner-4.6.2.2472-linux /opt/sonar-scanner
       # Run SonarQube analysis
-      - /opt/sonar-scanner/bin/sonar-scanner \
-        -Dsonar.host.url=<http://13.201.118.115:9000/> \
-        -Dsonar.projectKey=<juice-shop-cicd> \
+      - '/opt/sonar-scanner/bin/sonar-scanner \
+        -Dsonar.host.url=http://13.201.118.115:9000/ \
+        -Dsonar.projectKey=juice-shop-cicd \
         -Dsonar.sources=. \
-        -Dsonar.login=<sqp_329271a88c02af830f656cc4176cb3bf0ef1c4f5>
+        -Dsonar.login=sqp_329271a88c02af830f656cc4176cb3bf0ef1c4f5'
 
   # post_build:
   #   commands:
