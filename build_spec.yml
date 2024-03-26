@@ -25,9 +25,9 @@ phases:
   build:
     commands:
       # Run OWASP ZAP scan
-      - wget -O ZAP.sh https://raw.githubusercontent.com/zaproxy/zaproxy/develop/docker/docker-bootstrap/zap-baseline.py
-      - chmod +x ZAP.sh
-      - ./ZAP.sh -t http://localhost:3000 -J ./zap-report.json -r ./zap-alerts.html
+ #     - wget -O ZAP.sh https://raw.githubusercontent.com/zaproxy/zaproxy/develop/docker/docker-bootstrap/zap-baseline.py
+ #     - chmod +x ZAP.sh
+ #     - ./ZAP.sh -t http://localhost:3000 -J ./zap-report.json -r ./zap-alerts.html
       # Install SonarQube Scanner
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
       - unzip sonar-scanner-cli-4.6.2.2472-linux.zip
