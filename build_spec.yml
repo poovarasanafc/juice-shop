@@ -25,19 +25,19 @@ phases:
   build:
     commands:
       # Run OWASP ZAP scan
-      # - wget -O ZAP.sh https://raw.githubusercontent.com/zaproxy/zaproxy/develop/docker/docker-bootstrap/zap-baseline.py
-      # - chmod +x ZAP.sh
-      # - ./ZAP.sh -t http://localhost:3000 -J ./zap-report.json -r ./zap-alerts.html
-      # # Install SonarQube Scanner
-      # - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
-      # - unzip sonar-scanner-cli-4.6.2.2472-linux.zip
-      # - mv sonar-scanner-4.6.2.2472-linux /opt/sonar-scanner
+      - wget -O ZAP.sh https://raw.githubusercontent.com/zaproxy/zaproxy/develop/docker/docker-bootstrap/zap-baseline.py
+      - chmod +x ZAP.sh
+      - ./ZAP.sh -t http://localhost:3000 -J ./zap-report.json -r ./zap-alerts.html
+      # Install SonarQube Scanner
+      - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
+      - unzip sonar-scanner-cli-4.6.2.2472-linux.zip
+      - mv sonar-scanner-4.6.2.2472-linux /opt/sonar-scanner
       # Run SonarQube analysis
       - '/opt/sonar-scanner/bin/sonar-scanner \
         -Dsonar.host.url=http://13.201.118.115:9000/ \
         -Dsonar.projectKey=juice-shop-cicd \
         -Dsonar.sources=. \
-        -Dsonar.login=sqp_329271a88c02af830f656cc4176cb3bf0ef1c4f5
+        -Dsonar.login=sqp_329271a88c02af830f656cc4176cb3bf0ef1c4f5'
 
   # post_build:
   #   commands:
