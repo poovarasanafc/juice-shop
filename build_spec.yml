@@ -1,0 +1,47 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14
+      java: corretto11
+    commands:
+      # Install necessary dependencies
+      - apt-get update
+      - apt-get install -y default-jre
+
+  pre_build:
+    commands:
+      # Clone the repository
+      - git clone https://github.com/juice-shop/juice-shop.git
+      # Install dependencies and build Juice Shop
+      - cd juice-shop
+      - npm install
+      - npm run prepare
+      # Start Juice Shop application in background
+      - npm start &
+      # Wait for application to start
+      - sleep 20
+
+  build:
+    commands:
+      # Run OWASP ZAP scan
+      # - wget -O ZAP.sh https://raw.githubusercontent.com/zaproxy/zaproxy/develop/docker/docker-bootstrap/zap-baseline.py
+      # - chmod +x ZAP.sh
+      # - ./ZAP.sh -t http://localhost:3000 -J ./zap-report.json -r ./zap-alerts.html
+      # # Install SonarQube Scanner
+      # - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
+      # - unzip sonar-scanner-cli-4.6.2.2472-linux.zip
+      # - mv sonar-scanner-4.6.2.2472-linux /opt/sonar-scanner
+      # Run SonarQube analysis
+      - /opt/sonar-scanner/bin/sonar-scanner \
+        -Dsonar.host.url=<http://13.201.118.115:9000/> \
+        -Dsonar.projectKey=<juice-shop-cicd> \
+        -Dsonar.sources=. \
+        -Dsonar.login=<sqp_329271a88c02af830f656cc4176cb3bf0ef1c4f5>
+
+  # post_build:
+  #   commands:
+  #     # Upload reports to S3 or any other destination
+  #     - aws s3 cp ./zap-report.json s3://<BUCKET_NAME>/zap-report.json
+  #     - aws s3 cp ./zap-alerts.html s3://<BUCKET_NAME>/zap-alerts.html
