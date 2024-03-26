@@ -17,7 +17,6 @@ phases:
       # Install dependencies and build Juice Shop
       - cd juice-shop
       - npm install
-      - npm run prepare
       # Start Juice Shop application in background
       - npm start &
       # Wait for application to start
