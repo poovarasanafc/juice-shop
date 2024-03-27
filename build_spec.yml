@@ -34,10 +34,9 @@ phases:
       - mv sonar-scanner-4.6.2.2472-linux /opt/sonar-scanner
       # Run SonarQube analysis
       - /opt/sonar-scanner/bin/sonar-scanner \
-        -Dsonar.host.url="$SONAR_QUBE_URL/" \
-        -Dsonar.projectKey="$SONAR_QUBE_PROJECT" \
-        -Dsonar.sources=.
-        -Dsonar.login="$SONAR_QUBE_KEY"
+      -Dsonar.projectKey=juice-shop-cicd \
+      -Dsonar.sources=. \
+      -Dsonar.host.url=http://13.201.225.218:9000
 
   # post_build:
   #   commands:
